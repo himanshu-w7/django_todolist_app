@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Todolist</title>
+  <style>
+    .tododiv{
+    margin:20px;
+    border-radius:5px;
+    display:inline-block;
+    padding:20px;
+    width:50%;
+     position:relative;
+     left:20%;
+     background-color:skyblue;
+     }
+     button{
+     background-color:#000;
+     color:#fff;
+     width:100px;
+     height:30px;
+     margin:10px;
+     border-radius:5px;
+
+     }
+     button:hover{background-color:brown;color:#fff;}
+     .delete{margin-left:100px;
+     }
+     a{color:#fff;}
+     label{margin-left:50px;}
+     option{background-color:#000;color:#fff;
+     width:50px;
+     }
+     .checkbox{width:50px;height:20px;color:green;}
+     p{color:red;
+     margin-left:200px;}
+     .x-area{width:20%;height:25px;border-radius:5px}
+  </style>
+</head>
+<body>
+<div class="container">
+  <div>
+    <div>
+      <div class="tododiv">
+        <form action="" method="POST" name="record">{%csrf_token%}
+          <h1>Todolist Task</h1>
+            <p>{{error}}</p>
+        <hr>
+            Describe your Title
+          <input class="input_title" name="description">
+           <hr>
+           <div class="category">
+            <label>Categories:</label>
+
+               <select class="x-area" name="select_category">
+                 {%for x in categories%}
+                 <option class="x-area" name="selectcategories">{{x}}</option>
+                 {%endfor%}
+               </select>
+              <label>Due Date:</label>
+            <input class="x-area" type="date" name="date">
+             <hr>
+             <button name="taskadd">Add task</button>
+<!--               <button class="delete" name="taskdelete">Delete</button>-->
+
+            </div>
+
+          <div class="taskdiv">
+          {%for task in todos%}
+            <input type="checkbox" class="checkbox" name="checkbox" value="{{task.id}}">
+              {{task.title}}<br>
+              {{task.cre_date}}-{{task.due_date}}
+            <button class="delete" name="taskdelete">Delete</button>
+            <hr>
+          {%endfor%}
+
+        </div>
+            </form>
+  </div>
+  </div>
+  </div>
+</div>
+</body>
+<script>
+</script>
+</html>
